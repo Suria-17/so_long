@@ -6,37 +6,37 @@
 /*   By: sramasam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 10:37:19 by sramasam          #+#    #+#             */
-/*   Updated: 2025/12/17 10:37:38 by sramasam         ###   ########.fr       */
+/*   Updated: 2025/12/17 12:25:29 by sramasam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	load_sprites(t_game *game)
+static void	load_textures(t_game *game)
 {
 	int	width;
 	int	height;
 
-	game->player.img = mlx_xpm_file_to_image(game->mlx, "sprites/player.xpm",
+	game->player.img = mlx_xpm_file_to_image(game->mlx, "textures/player.xpm",
 			&width, &height);
-	game->wall.img = mlx_xpm_file_to_image(game->mlx, "sprites/wall.xpm",
+	game->wall.img = mlx_xpm_file_to_image(game->mlx, "textures/wall.xpm",
 			&width, &height);
-	game->empty.img = mlx_xpm_file_to_image(game->mlx, "sprites/empty.xpm",
+	game->empty.img = mlx_xpm_file_to_image(game->mlx, "textures/empty.xpm",
 			&width, &height);
 	game->collectible.img = mlx_xpm_file_to_image(game->mlx,
-			"sprites/collectible.xpm", &width, &height);
-	game->exit.img = mlx_xpm_file_to_image(game->mlx, "sprites/exit.xpm",
+			"textures/collectible.xpm", &width, &height);
+	game->exit.img = mlx_xpm_file_to_image(game->mlx, "textures/exit.xpm",
 			&width, &height);
 	if (!game->player.img || !game->wall.img || !game->empty.img
 		|| !game->collectible.img || !game->exit.img)
 	{
-		return_error("Error while loading sprites");
+		return_error("Error while loading textures");
 		cleanup(game);
 		exit(1);
 	}
 }
 
-static void	draw_sprite(t_game *game, char c, int x, int y)
+static void	draw_texture(t_game *game, char c, int x, int y)
 {
 	if (c == '1')
 		mlx_put_image_to_window(game->mlx, game->win,
@@ -68,7 +68,7 @@ static int	draw_map(void *game_ptr)
 		x = 0;
 		while (x < game->width)
 		{
-			draw_sprite(game, game->map[y][x], x, y);
+			draw_texture(game, game->map[y][x], x, y);
 			x++;
 		}
 		y++;
@@ -94,7 +94,7 @@ int	setup_window(t_game *game)
 		return_error("Error creating window");
 		return (1);
 	}
-	load_sprites(game);
+	load_textures(game);
 	draw_map(game);
 	mlx_hook(game->win, 17, 0, close_window, game);
 	mlx_loop_hook(game->mlx, draw_map, game);

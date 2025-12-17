@@ -6,7 +6,7 @@
 /*   By: sramasam <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 21:28:08 by sramasam          #+#    #+#             */
-/*   Updated: 2025/12/17 10:24:13 by sramasam         ###   ########.fr       */
+/*   Updated: 2025/12/17 12:28:17 by sramasam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,20 @@ typedef struct s_pos
 	int	y;
 }	t_pos;
 
-typedef struct s_sprite
+typedef struct s_texture
 {
 	void	*img;
-}	t_sprite;
+}	t_texture;
 
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	t_sprite	player;
-	t_sprite	wall;
-	t_sprite	empty;
-	t_sprite	collectible;
-	t_sprite	exit;
+	t_texture	player;
+	t_texture	wall;
+	t_texture	empty;
+	t_texture	collectible;
+	t_texture	exit;
 	char		**map;
 	int			width;
 	int			height;
